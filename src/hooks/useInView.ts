@@ -1,0 +1,29 @@
+import { useEffect, useRef, useState, type RefObject } from 'react'
+
+export function useInView<T extends HTMLElement = HTMLElement>(threshold = 0.15): {
+  ref: RefObject<T | null>
+  visible: boolean
+} {
+  const ref = useRef<T>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold },
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [threshold])
+
+  return { ref, visible }
+}
