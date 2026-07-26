@@ -1,4 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="8" fill="#0a7b7b"/>
-  <text x="16" y="22" text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="18" font-weight="700">E</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none">
+  <path d="M8 58C2 46 0 34 4 22C8 10 20 2 34 0C48 -2 58 6 62 18C64 24 63 30 60 35C52 28 40 24 28 26C16 28 10 36 10 46C10 52 12 56 16 58C12 58 9 58 8 58Z" fill="#7B7C7E"/>
+  <path d="M14 54C10 44 10 32 16 22C22 12 34 6 46 8C54 9 60 14 62 22C58 18 50 16 42 17C30 19 22 28 22 40C22 46 24 50 28 52C24 53 18 54 14 54Z" fill="#FFFFFF"/>
+  <circle cx="18" cy="48" r="2.2" fill="#7B7C7E"/>
+  <circle cx="24" cy="44" r="1.8" fill="#7B7C7E"/>
+  <circle cx="30" cy="47" r="1.5" fill="#7B7C7E"/>
+  <path d="M38 14C52 12 62 20 62 32C62 42 54 50 42 50C32 50 26 44 26 36H48C48 40 45 43 41 43C37 43 34 40 34 34C34 26 40 20 48 20C54 20 58 23 60 28" fill="#002D72" transform="translate(4 6) skewX(-10)"/>
+  <path d="M30 38H60" stroke="#002D72" stroke-width="5" stroke-linecap="round" transform="translate(4 6) skewX(-10)"/>
 </svg>
