@@ -83,7 +83,7 @@ export default function Contact() {
               </label>
 
               <button type="submit" className="btn btn--primary btn--full">
-                Send Message
+                Send Message Testing
               </button>
             </form>
           )}
