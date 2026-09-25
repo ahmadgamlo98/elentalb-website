@@ -2,9 +2,8 @@ import { useInView } from '../hooks/useInView'
 import { useCountUp } from '../hooks/useCountUp'
 
 const stats = [
-  { value: 450, suffix: '+', label: 'Product Portfolio' },
-  { value: 28, suffix: '+', label: 'Therapeutic Areas' },
-  { value: 1200, suffix: '+', label: 'Qualified Employees' },
+  { value: 5, suffix: '+', label: 'Therapeutic Areas' },
+  { value: 20, suffix: '+', label: 'Qualified Employees' },
   { value: 15, suffix: '+', label: 'Years of Excellence' },
 ]
 

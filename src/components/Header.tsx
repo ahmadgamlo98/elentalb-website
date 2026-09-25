@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Products', href: '#products' },
-  { label: 'News', href: '#news' },
-  { label: 'Careers', href: '#careers' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/#home' },
+  { label: 'About', href: '/#about' },
+  { label: 'Products', href: '/#products' },
+  { label: 'News', href: '/#news' },
+  { label: 'Careers', href: '/#careers' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
-export default function Header() {
+type HeaderProps = {
+  forceScrolled?: boolean
+}
+
+export default function Header({ forceScrolled = false }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
+  const isScrolled = forceScrolled || scrolled
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -29,26 +36,32 @@ export default function Header() {
   const closeMenu = () => setMenuOpen(false)
 
   return (
-    <header className={`header ${scrolled ? 'header--scrolled' : ''} ${menuOpen ? 'header--menu-open' : ''}`}>
+    <header className={`header ${isScrolled ? 'header--scrolled' : ''} ${menuOpen ? 'header--menu-open' : ''}`}>
       <div className="container header__inner">
-        <a href="#home" className="logo" onClick={closeMenu}>
-          <span className="logo__mark" aria-hidden="true">E</span>
+        <Link to="/" className="logo" onClick={closeMenu}>
+          <span className="logo__icon-wrap">
+            <img src="/elenta-logo-icon.png" alt="" className="logo__icon" aria-hidden="true" />
+          </span>
           <span className="logo__text">Elenta</span>
-        </a>
+        </Link>
 
         <nav className={`nav ${menuOpen ? 'nav--open' : ''}`} aria-label="Main navigation">
           <ul className="nav__list">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href} onClick={closeMenu}>
+                <Link to={link.href} onClick={closeMenu}>
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <a href="#contact" className="btn btn--primary nav__cta" onClick={closeMenu}>
-            Get in Touch
-          </a>
+          <Link
+            to="/pharmacovigilance"
+            className={`btn btn--primary nav__cta ${location.pathname === '/pharmacovigilance' ? 'nav__cta--active' : ''}`}
+            onClick={closeMenu}
+          >
+            Pharmacovigilance
+          </Link>
         </nav>
 
         <button

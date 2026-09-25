@@ -4,32 +4,32 @@ const reasons = [
   {
     icon: '⚖️',
     title: 'Ethical Standards',
-    text: 'Strict adherence to regulatory and ethical guidelines at every step.',
+    text: 'We conduct our business with integrity and seek to maintain professional and ethical standards in every relationship and transaction.',
   },
   {
     icon: '🔍',
     title: 'Traceability & Transparency',
-    text: 'Full supply chain visibility from manufacturer to point of care.',
+    text: 'We value clear documentation, product traceability, and transparent communication across the supply chain, from manufacturer coordination to market delivery.',
   },
   {
     icon: '📈',
     title: 'Continuous Improvement',
-    text: 'We evolve through feedback, data, and a commitment to excellence.',
+    text: 'We continuously review market needs, partner feedback, and operational processes to strengthen service quality and execution.',
   },
   {
     icon: '🏭',
     title: 'Storage & Inventory',
-    text: 'Advanced cold-chain and inventory systems that protect product integrity.',
+    text: 'We aim to manage pharmaceutical products in accordance with applicable storage, handling, and product-specific requirements.',
   },
   {
     icon: '🤝',
     title: 'Rigorous Supplier Selection',
-    text: 'Only vetted, certified partners enter the Elenta network.',
+    text: 'Potential manufacturing partners are evaluated with attention to product quality, documentation, regulatory suitability, supply reliability, and long-term market potential.',
   },
   {
     icon: '🌐',
-    title: 'Regional Reach',
-    text: 'Subsidiaries and partners across multiple markets for seamless coverage.',
+    title: 'Market Reach',
+    text: 'Our current strategic focus is the Lebanese healthcare market, with a model built to develop strong relationships across institutional, public, humanitarian, and selected retail channels.',
   },
 ]
 
@@ -41,7 +41,7 @@ export default function WhyChooseUs() {
       <div className="container">
         <div className={`section-header reveal-up ${visible ? 'is-visible' : ''}`}>
           <span className="section-tag">Why Choose Elenta</span>
-          <h2 className="section-title">Because we ensure quality at every touchpoint</h2>
+          <h2 className="section-title">Quality at Every Touchpoint</h2>
         </div>
 
         <div className={`why__grid ${visible ? 'is-visible' : ''}`}>
