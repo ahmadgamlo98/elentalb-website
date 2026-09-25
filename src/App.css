@@ -28,6 +28,20 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+section[id] {
+  scroll-margin-top: var(--header-h);
 }
 
 body {
@@ -117,6 +131,29 @@ button {
 
 .section-header__desc {
   margin-top: 12px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+input[type='date'] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 46px;
+  text-align: left;
+}
+
+input[type='date']::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+label {
+  min-width: 0;
 }
 
 /* Buttons */
@@ -1002,6 +1039,7 @@ button {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--elenta-text-light);
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1099,6 +1137,7 @@ button {
   font-weight: 600;
   color: var(--elenta-navy);
   line-height: 1.5;
+  overflow-wrap: anywhere;
   transition: color 0.2s ease;
 }
 
@@ -1268,6 +1307,7 @@ button {
 
 .footer__links a {
   font-size: 0.9375rem;
+  overflow-wrap: anywhere;
   transition: color 0.2s ease;
 }
 
@@ -1309,7 +1349,16 @@ button {
 /* Responsive */
 @media (max-width: 1024px) {
   .stats__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about__image {
+    aspect-ratio: 16 / 10;
+  }
+
+  .about__badge {
+    right: 16px;
+    bottom: -16px;
   }
 
   .about__grid,
@@ -1349,9 +1398,125 @@ button {
     box-shadow: none;
   }
 
+  /* backdrop-filter makes the header the containing block of the fixed
+     nav, which squeezes the mobile menu into the header bar */
+  .header--scrolled,
   .header--menu-open.header--scrolled {
     background: var(--elenta-white);
     backdrop-filter: none;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-text {
+    font-size: 1rem;
+  }
+
+  /* horizontal reveal offsets push content past the viewport edge */
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(32px);
+  }
+
+  /* iOS Safari zooms into inputs with font-size below 16px */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero__content {
+    padding: 56px 0 96px;
+  }
+
+  .hero__eyebrow {
+    font-size: 0.75rem;
+    margin-bottom: 14px;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 9vw, 2.5rem);
+    margin-bottom: 18px;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+    margin-bottom: 28px;
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+
+  .about__grid,
+  .careers__inner {
+    gap: 48px;
+  }
+
+  .about__image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .about__badge {
+    padding: 14px 18px;
+  }
+
+  .about__badge-number {
+    font-size: 1.5rem;
+  }
+
+  .culture-card__visual {
+    min-height: 180px;
+  }
+
+  .culture-card__body,
+  .why-card,
+  .industry-card {
+    padding: 22px;
+  }
+
+  .news-card__body {
+    padding: 20px;
+  }
+
+  .news-card__meta {
+    flex-wrap: wrap;
+  }
+
+  .careers__form,
+  .careers__success {
+    max-width: none;
+  }
+
+  .careers__image {
+    aspect-ratio: 16 / 10;
+  }
+
+  .contact__info-bar {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .contact__info-item {
+    padding: 18px 20px;
+  }
+
+  .contact__form-wrap {
+    padding: 22px 18px;
+  }
+
+  .contact__map {
+    min-height: 300px;
+  }
+
+  .footer {
+    padding-top: 48px;
   }
 
   .header__inner {
@@ -1384,11 +1549,13 @@ button {
     top: var(--header-h);
     flex-direction: column;
     justify-content: flex-start;
-    padding: 32px 24px;
+    align-items: stretch;
+    padding: 32px 24px calc(32px + env(safe-area-inset-bottom));
     gap: 24px;
     background: var(--elenta-white);
     transform: translateX(100%);
-    transition: transform 0.35s ease;
+    visibility: hidden;
+    transition: transform 0.35s ease, visibility 0.35s;
     z-index: 999;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -1396,6 +1563,7 @@ button {
 
   .nav--open {
     transform: translateX(0);
+    visibility: visible;
   }
 
   .nav__list {
@@ -1423,12 +1591,23 @@ button {
   }
 
   .stats__grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 
   .stat-card {
-    padding: 20px 16px;
+    padding: 18px 8px;
+    border-radius: var(--radius);
+  }
+
+  .stat-card__value {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+
+  .stat-card__label {
+    font-size: 0.75rem;
+    line-height: 1.35;
   }
 
   .culture__grid,
@@ -1460,8 +1639,17 @@ button {
 }
 
 @media (max-width: 480px) {
-  .stats__grid {
-    grid-template-columns: 1fr;
+  .about__badge {
+    right: 12px;
+    bottom: -14px;
+  }
+
+  .culture-card__body h3 {
+    font-size: 1.2rem;
+  }
+
+  .pv-page__title {
+    margin-bottom: 20px;
   }
 
   .hero__actions {
@@ -1645,11 +1833,35 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .pv-page {
+    padding-top: calc(var(--header-h) + 20px);
+  }
+
+  .pv-form {
+    gap: 18px;
+  }
+
   .pv-section {
-    padding: 20px;
+    padding: 20px 16px;
+  }
+
+  .pv-section__title {
+    margin-bottom: 16px;
   }
 
   .pv-submit {
     width: 100%;
+  }
+}
+
+/* Touch devices: avoid "sticky" hover lifts after a tap */
+@media (hover: none) {
+  .btn:hover,
+  .stat-card:hover,
+  .culture-card:hover,
+  .industry-card:hover,
+  .why-card:hover,
+  .news-card:hover {
+    transform: none;
   }
 }
