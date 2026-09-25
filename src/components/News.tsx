@@ -2,22 +2,24 @@ import { useInView } from '../hooks/useInView'
 
 const newsItems = [
   {
-    date: 'Mar 12, 2026',
+    date: 'Milan, 2026',
     category: 'Events',
-    title: 'Elenta hosts regional pharmacists summit on patient safety',
-    excerpt: 'Healthcare leaders gathered to discuss best practices in pharmaceutical distribution.',
+    title: 'Elenta at CPhI Milan 2026',
+    excerpt:
+      'Elenta S.A.R.L. is engaging with pharmaceutical manufacturers and international healthcare companies during CPhI Milan 2026 to explore new opportunities for collaboration and product development in the Lebanese market.',
+    image:
+      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+    imageAlt: 'International pharmaceutical exhibition and networking',
   },
   {
-    date: 'Feb 28, 2026',
-    category: 'News',
-    title: 'New cold-chain facility expands capacity by 40%',
-    excerpt: 'Our latest investment strengthens delivery reliability across therapeutic areas.',
-  },
-  {
-    date: 'Jan 15, 2026',
-    category: 'Initiatives',
-    title: 'Community health outreach program reaches 10,000 patients',
-    excerpt: 'Elenta teams partnered with local clinics to improve medicine accessibility.',
+    date: 'Ehden, 2026',
+    category: 'Events',
+    title: 'Elenta Participates in Lebanese Hospital Pharmacist Day 2026 in Ehden',
+    excerpt:
+      'Elenta S.A.R.L. was pleased to participate in Hospital Pharmacist Day, held in Ehden, Lebanon, bringing together hospital pharmacists and healthcare professionals for a day dedicated to professional exchange, education, and networking.',
+    image:
+      'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
+    imageAlt: 'Hospital pharmacists and healthcare professionals in discussion',
   },
 ]
 
@@ -31,7 +33,8 @@ export default function News() {
           <span className="section-tag">News &amp; Initiatives</span>
           <h2 className="section-title">Latest from Elenta</h2>
           <p className="section-text section-header__desc">
-            Explore breakthroughs, events, and updates in the world of Elenta healthcare.
+            Explore company updates, partnerships, product developments, industry participation,
+            and healthcare initiatives from Elenta.
           </p>
         </div>
 
@@ -42,7 +45,12 @@ export default function News() {
               className="news-card"
               style={{ transitionDelay: `${i * 0.12}s` }}
             >
-              <div className="news-card__image" aria-hidden="true" />
+              <div
+                className="news-card__image"
+                role="img"
+                aria-label={item.imageAlt}
+                style={{ backgroundImage: `url(${item.image})` }}
+              />
               <div className="news-card__body">
                 <div className="news-card__meta">
                   <span className="news-card__category">{item.category}</span>
@@ -50,14 +58,9 @@ export default function News() {
                 </div>
                 <h3>{item.title}</h3>
                 <p>{item.excerpt}</p>
-                <a href="#contact" className="link-arrow">Read more</a>
               </div>
             </article>
           ))}
-        </div>
-
-        <div className={`news__cta reveal-up ${visible ? 'is-visible' : ''}`}>
-          <a href="#contact" className="btn btn--outline">View all news</a>
         </div>
       </div>
     </section>
